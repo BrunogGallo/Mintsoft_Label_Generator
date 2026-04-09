@@ -1,0 +1,48 @@
+{
+    "pickup": "5402456", # MUST
+    "distributionCenter": "USDFW1", # MUST
+    "orderedProductId": "GND", # MUST
+    "consigneeAddress": { # MUST
+        "name": "John Doe", - "FirstName"
+        "companyName": "Doe Inc.", - "CompanyName"
+        "address1": "5923 Peachtree Industrial Blvd", - "Address1"
+        "address2": "Suite 100",
+        "city": "Norcross", - "Town"
+        "state": "GA", - "County"
+        "country": "US", - "Country" -> "Code"
+        "postalCode": "30024", - "PostCode"
+        "email": "2@y.com", - "Email"
+        "phone": "44423440348", - "Phone"
+    },
+    "returnAddress": { # MUST "Irian los datos de Dallas?"
+        "name": "Dave Bloggs",
+        "companyName": "Joe Inc.",
+        "address1": "4552 OLD DIXIE HWY",
+        "address2": "Near Pixar road",
+        "city": "Baltimore",
+        "state": "MD",
+        "country": "US",
+        "postalCode": "30024",
+        "email": "2@y.com",
+        "phone": "44423440348"
+    },
+    "packageDetail": { 
+        "packageId": "V4-TEST-1586965592482", # MUST - "Indistinto"
+        "packageDescription": "test package desc",
+        "weight": {
+            "value": 10, # MUST - "TotalWeight"
+            "unitOfMeasure": "OZ" # MUST - "PO"
+        },
+        "service": "SIGCON", #MUST - Para que se cree con Signature Requirement
+        "serviceEndorsement": "1",
+        "billingReference1": "test bill ref 1",
+        "billingReference2": "test bill ref 2",
+        "shippingCost": {
+            "currency": "USD",
+            "freight": 4,
+            "declaredValue": 50,
+            "insuredValue": 50,
+            "dutiesPaid": false
+        }
+    }
+}'
