@@ -14,8 +14,17 @@ class MintsoftService:
         packed_orders = self.client.get_orders()
         dhl_sr_orders = []
 
+        dhl_products = {
+            "DHL SmartMail Parcel / Parcel Plus Ground":     {"orderedProductId": "GND", "service": "DELCON"},
+            "DHL SmartMail Parcel / Parcel Plus Expedited":  {"orderedProductId": "EXP", "service": "DELCON"},
+            "DHL SmartMail Parcel Expedited Max":            {"orderedProductId": "PLM", "service": "DELCON"},
+            "DHL Parcel Ground With Signature":              {"orderedProductId": "GND", "service": "SIGCON"},
+        }
+
         for order in packed_orders:
-            if order.get("CourierServiceName") == "DHL Parcel Expedited With Signature":
+            courier_service = order.get("CourierServiceName")
+            
+            if courier_service in dhl_products:
                 order_data = [
                     {
                         "OrderId": order.get("ID")
@@ -23,7 +32,7 @@ class MintsoftService:
                     {
                         "pickup": "5402456", # MUST
                         "distributionCenter": "USDFW1", # MUST
-                        "orderedProductId": "GND", # MUST
+                        "orderedProductId": dhl_products[courier_service]["orderedProductId"], # MUST
                         "consigneeAddress": { # MUST
                             "name": f"{order.get("FirstName") or ''} {order.get('LastName') or ''}",
                             "companyName": order.get("CompanyName"),
@@ -52,7 +61,7 @@ class MintsoftService:
                                 "value": order.get("TotalWeight"), # MUST - "TotalWeight"
                                 "unitOfMeasure": "LB" # MUST - "LB"
                             },
-                            "service": "SIGCON", #MUST - Para que se cree con Signature Requirement
+                            "service": dhl_products[courier_service]["service"], #MUST - Para que se cree con Signature Requirement
                         },
                 }]
                 dhl_sr_orders.append(order_data)
@@ -74,7 +83,7 @@ class MintsoftService:
         self.client.add_order_documents(order_id, label_payload)
 
         print(f"Label agregada, marcando Orden {order_id} como Despachada")
-        #self.client.mark_order_despatched(order_id, tracking_number)
+        self.client.mark_order_despatched(order_id, tracking_number)
 
         return order_id, order_label
 

@@ -37,5 +37,3 @@ class DhlClient:
         tracking_number = labels[0].get("dhlPackageId")
 
         return label_data, tracking_number
-
-    
