@@ -61,7 +61,7 @@ class MintsoftService:
                             "postalCode": "75006",
                         },
                         "packageDetail": { 
-                            "packageId": f'{client}|{order_number}'[:30], # Limite de 30 caracteres por API
+                            "packageId": f'{client.replace(" ", "_")}|{order_number.replace(" ", "_")}'[:30], # Limite de 30 caracteres por API
                             "packageDescription": order.get("OrderNumber"),
                             "weight": {
                                 "value": order.get("TotalWeight"), # MUST - "TotalWeight"
