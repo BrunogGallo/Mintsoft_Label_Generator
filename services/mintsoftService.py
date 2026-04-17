@@ -25,7 +25,7 @@ class MintsoftService:
         for order in packed_orders:
             courier_service = order.get("CourierServiceName")
             order_number = order.get("OrderNumber")
-            client = MINT_CLIENT_MAP.get(order.get("OrderId"), "Unkwon")
+            client = MINT_CLIENT_MAP.get(order.get("ClientId"), "Unknown")
 
             # if order.get("ID") == 3: # Para saltear ordenes de Test Client
             #     continue
