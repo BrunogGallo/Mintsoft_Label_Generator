@@ -63,8 +63,8 @@ class MintsoftService:
                                 "unitOfMeasure": "LB" # MUST - "LB"
                             },
                             "service": dhl_products[courier_service]["service"], #MUST - Para que se cree con Signature Requirement
-                            "billingReference1": order.get("OrderNumber"),
-                            "billingReference2": MINT_CLIENT_MAP.get(order.get("ClientId"), "Unknown"),
+                            "billingReference1": order.get("OrderNumber")[:30],
+                            "billingReference2": MINT_CLIENT_MAP.get(order.get("ClientId"), "Unknown")[:30],
                         },
                 }]
                 dhl_sr_orders.append(order_data)
