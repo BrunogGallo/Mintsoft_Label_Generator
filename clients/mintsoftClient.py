@@ -48,7 +48,7 @@ class MintsoftOrderClient:
         url = f"{self.BASE_URL}/api/Order/List"
         params = {
             "OrderStatusId": 20, # Para las que estan en PACKED
-            "Limit": 2,
+            "Limit": 4,
             "ClientID": 3
         }
         response = requests.get(url, headers=self._headers(), params=params)

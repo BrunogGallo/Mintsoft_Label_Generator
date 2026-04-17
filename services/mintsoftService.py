@@ -1,5 +1,6 @@
 from mappers.MintCountryMap import MINT_COUNTRY_MAP
 from mappers.StateMapper import STATE_CODE_MAP
+from mappers.MintClientMapper import MINT_CLIENT_MAP
 from clients.mintsoftClient import MintsoftOrderClient
 import base64
 from dotenv import load_dotenv
@@ -62,6 +63,8 @@ class MintsoftService:
                                 "unitOfMeasure": "LB" # MUST - "LB"
                             },
                             "service": dhl_products[courier_service]["service"], #MUST - Para que se cree con Signature Requirement
+                            "billingReference1": order.get("OrderNumber"),
+                            "billingReference2": MINT_CLIENT_MAP.get(order.get("ClientId"), "Unknown"),
                         },
                 }]
                 dhl_sr_orders.append(order_data)
