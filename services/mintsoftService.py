@@ -51,7 +51,7 @@ class MintsoftService:
                             "phone": order.get("Phone")
                         },
                         "returnAddress": {
-                            "name": "The 5411 Distribution",
+                            "name": client,
                             "companyName": "The 5411 Distribution",
                             "address1": "1613 Hutton Drive",
                             "address2": "Suite 100",
@@ -61,7 +61,7 @@ class MintsoftService:
                             "postalCode": "75006",
                         },
                         "packageDetail": { 
-                            "packageId": f'{client.replace(" ", "_")}-{order_number.replace(" ", "_")}'[:30], # Limite de 30 caracteres por API
+                            "packageId": order_number.replace(" ", "_")[:30], # Limite de 30 caracteres por API
                             "packageDescription": order.get("OrderNumber"),
                             "weight": {
                                 "value": order.get("TotalWeight"), # MUST - "TotalWeight"
