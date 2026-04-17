@@ -24,6 +24,8 @@ class MintsoftService:
 
         for order in packed_orders:
             courier_service = order.get("CourierServiceName")
+            order_number = order.get("OrderNumber")
+            client = MINT_CLIENT_MAP.get(order.get("OrderId"), "Unkwon")
 
             # if order.get("ID") == 3: # Para saltear ordenes de Test Client
             #     continue
@@ -59,15 +61,15 @@ class MintsoftService:
                             "postalCode": "75006",
                         },
                         "packageDetail": { 
-                            "packageId": order.get("OrderNumber").replace(" ", "_")[:30], # Limite de 30 caracteres por API
+                            "packageId": f'{client}|{order_number}'[:30], # Limite de 30 caracteres por API
                             "packageDescription": order.get("OrderNumber"),
                             "weight": {
                                 "value": order.get("TotalWeight"), # MUST - "TotalWeight"
                                 "unitOfMeasure": "LB" # MUST - "LB"
                             },
                             "service": dhl_products[courier_service]["service"], #MUST - Para que se cree con Signature Requirement
-                            "billingReference1": order.get("OrderNumber")[:30],
-                            "billingReference2": MINT_CLIENT_MAP.get(order.get("ClientId"), "Unknown")[:30],
+                            "billingReference1": order_number[:30],
+                            "billingReference2": client[:30],
                         },
                 }]
                 dhl_sr_orders.append(order_data)
