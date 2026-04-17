@@ -24,6 +24,9 @@ class MintsoftService:
 
         for order in packed_orders:
             courier_service = order.get("CourierServiceName")
+
+            # if order.get("ID") == 3: # Para saltear ordenes de Test Client
+            #     continue
             
             if courier_service in dhl_products:
                 order_data = [
