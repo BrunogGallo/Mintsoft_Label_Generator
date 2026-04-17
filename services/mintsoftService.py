@@ -18,7 +18,7 @@ class MintsoftService:
         dhl_products = {
             "DHL SmartMail Parcel / Parcel Plus Ground":     {"orderedProductId": "GND", "service": "DELCON"},
             "DHL SmartMail Parcel / Parcel Plus Expedited":  {"orderedProductId": "EXP", "service": "DELCON"},
-            "DHL SmartMail Parcel Expedited Max":            {"orderedProductId": "PLM", "service": "DELCON"},
+            "DHL SmartMail Parcel Expedited Max":            {"orderedProductId": "MAX", "service": "DELCON"},
             "DHL Parcel Ground With Signature":              {"orderedProductId": "GND", "service": "SIGCON"},
         }
 
