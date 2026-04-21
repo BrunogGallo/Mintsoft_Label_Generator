@@ -73,8 +73,7 @@ class MintsoftService:
                         },
                 }]
                 dhl_sr_orders.append(order_data)
-
-        print(f'Hay un total de {len(dhl_sr_orders)} ordenes para procesar')
+                
         return dhl_sr_orders
     
     def add_label_and_despatch(self, order_id: int, order_label: str, tracking_number: str):

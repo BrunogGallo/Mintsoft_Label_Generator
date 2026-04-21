@@ -16,6 +16,7 @@ try:
     packed_orders_withsr = mint_service.fetch_packed_sr_orders()
 
     if packed_orders_withsr:
+        print(f'Hay un total de {len(packed_orders_withsr)} ordenes para procesar')
 
         # Recorro el array de ordenes
         for order in packed_orders_withsr: # Cada Orden tiene ID en 0 y la info para DHL en 1
@@ -34,6 +35,8 @@ try:
                 order_number = order[1].get("packageDetail", []).get("packageId")
                 
                 mail_service.send_label_email(client_name, order_number, tracking_number, order_label)
+        
+        print("Procesamiento de ordenes finalizado")
 
     
     else:
