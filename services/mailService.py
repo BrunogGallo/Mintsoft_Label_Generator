@@ -10,16 +10,16 @@ from email.mime.application import MIMEApplication
 load_dotenv()
 
 class MailService():
-        def send_label_email(self, client_name, order_number, label):
+        def send_label_email(self, client_name, order_number, tracking_number, label):
             # Configuración del servidor (Ejemplo con Gmail)
             smtp_server = "smtp.gmail.com"
             smtp_port = 587
             sender_email = os.getenv("EMAIL_USER")
             sender_password = os.getenv("EMAIL_PASSWORD")
-            receiver = "bgallo@the5411.com" # online@the5411.com
+            receiver = "online@the5411.com" 
 
             message = MIMEMultipart("alternative")
-            message["Subject"] = f"Shipping label para '{order_number}' - Cliente: {client_name}"
+            message["Subject"] = f"{order_number} - {client_name}" # Numero de orden - Marca
             message["From"] = sender_email
             message["To"] = receiver
 
@@ -39,7 +39,7 @@ class MailService():
                 pdf_bytes = pdf_buffer.getvalue()
 
                 part = MIMEApplication(pdf_bytes, Name=f"Label_{order_number}.pdf")
-                part['Content-Disposition'] = f'attachment; filename="Label_{order_number}.pdf"'
+                part['Content-Disposition'] = f'attachment; filename="{tracking_number}-{client_name}.pdf"' 
                 message.attach(part)
 
                 # 4. Envío del correo

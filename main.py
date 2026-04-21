@@ -21,7 +21,7 @@ try:
         for order in packed_orders_withsr: # Cada Orden tiene ID en 0 y la info para DHL en 1
             # Consulta a la API de DHL para crear las labels
             print(f'Creando Label para la orden {order[0].get("OrderId")}')
-            label_and_tracking = dhl_client.create_sr_label(order[1])
+            label_and_tracking = dhl_client.create_label(order[1])
             order_label = label_and_tracking[0]
             
             tracking_number = label_and_tracking[1]
@@ -33,7 +33,7 @@ try:
                 client_name = order[1].get("consigneeAddress", {}).get("name")
                 order_number = order[1].get("packageDetail", []).get("packageId")
                 
-                mail_service.send_label_email(client_name, order_number, order_label)
+                mail_service.send_label_email(client_name, order_number, tracking_number, order_label)
 
     
     else:

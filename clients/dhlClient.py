@@ -21,7 +21,7 @@ class DhlClient:
         
         return json.get("access_token")
 
-    def create_sr_label(self, order_data):
+    def create_label(self, order_data):
         access_token = self.get_dhl_access_token()
         url = "https://api.dhlecs.com/shipping/v4/label?format=PNG"
 
@@ -37,3 +37,19 @@ class DhlClient:
         tracking_number = labels[0].get("dhlPackageId")
 
         return label_data, tracking_number
+    
+    def create_manifest(self):
+        access_token = self.get_dhl_access_token()
+        url = "https://api-sandbox.dhlecs.com/shipping/v4/manifest"
+
+        data = {
+            "pickup": 5402456,
+            "manifests": []
+        }        
+
+        response = requests.post(url, data, headers = {
+            "Authorization": f"Bearer {access_token}"
+        })
+
+        print(response)
+        print(response.json())
