@@ -44,7 +44,7 @@ class MintsoftService:
                             "companyName": f"{order.get("CompanyName") or order.get("FirstName")}",
                             "address1": order.get("Address1"),
                             "city": order.get("Town"),
-                            "state": STATE_CODE_MAP.get(order.get("County"), "Unknown"),
+                            "state": order.get("County") or STATE_CODE_MAP.get(order.get("County"), "Unknown"),
                             "country": MINT_COUNTRY_MAP.get(order.get("CountryId"), "Unknown"),
                             "postalCode": order.get("PostCode"),
                             "email": order.get("Email") or "None",
