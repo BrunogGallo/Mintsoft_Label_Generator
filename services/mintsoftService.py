@@ -41,7 +41,7 @@ class MintsoftService:
                         "orderedProductId": dhl_products[courier_service]["orderedProductId"], # MUST
                         "consigneeAddress": { # MUST
                             "name": f"{order.get("FirstName") or ''} {order.get('LastName') or ''}",
-                            "companyName": order.get("CompanyName"),
+                            "companyName": f"{order.get("CompanyName") or order.get("FirstName")}",
                             "address1": order.get("Address1"),
                             "city": order.get("Town"),
                             "state": STATE_CODE_MAP.get(order.get("County"), "Unknown"),
