@@ -70,7 +70,7 @@ class MintsoftOrderClient:
     def add_order_documents(self, order_id, label_payload):
         url = f'{self.BASE_URL}/api/Order/{order_id}/Documents?PrintWithOrder=false&DocumentTypeId=5'
         print(order_id)
-        response = requests.put(url, headers=self._headers(), json = label_payload, timeout = 30)
+        response = requests.put(url, headers=self._headers(), json = label_payload)
 
         print(response.text)
         return response
@@ -78,7 +78,7 @@ class MintsoftOrderClient:
     def mark_order_despatched(self, order_id, tracking_number):
         url = f'{self.BASE_URL}/api/Order/{order_id}/MarkDespatched?TrackingNumber={tracking_number}'
 
-        response = requests.get(url, headers=self._headers(), timeout = 30)
+        response = requests.get(url, headers=self._headers())
 
         print(response.text)
         return response
