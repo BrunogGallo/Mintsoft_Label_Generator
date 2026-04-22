@@ -16,7 +16,7 @@ class MailService():
             smtp_port = 587
             sender_email = os.getenv("EMAIL_USER")
             sender_password = os.getenv("EMAIL_PASSWORD")
-            receiver = "online@the5411.com" 
+            receiver = "iblaquier@the5411.com" #online@the5411.com
 
             message = MIMEMultipart("alternative")
             message["Subject"] = f"{order_number} - {client_name}" # Numero de orden - Marca
